@@ -1,0 +1,20 @@
+<%= @products.each_slice(3) do |product_row| %>
+  <% product_row.each do |p| %> 
+    <div class="large-4 columns">
+      <p><%= image_tag p.item_number.to_s + ".jpg", width: 200 %></p>
+      <strong><%= link_to p.name, p %></strong>
+      <p> 
+        Item ID: <%= p.item_number %> | <%= number_to_currency p.price %>
+      </p>
+    </div>
+  <% end %>
+  <hr />
+<% end %>
+<br />
+<div class="row">
+  <div class="large-9 large-offset-3 columns">
+    <%= will_paginate @products, renderer: FoundationPagination::Rails %>
+  </div>
+</div>
+
+<br />

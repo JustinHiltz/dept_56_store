@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  item_number: 
+  name: MyString
+  price: 1.5
+  show: 
+  collection: 
+
+two:
+  item_number: 
+  name: MyString
+  price: 1.5
+  show: 
+  collection: 
