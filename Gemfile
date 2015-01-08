@@ -1,7 +1,6 @@
 source 'https://rubygems.org'
 
 gem 'rails', '4.1.4'
-gem 'ruby', '2.0.0'
 gem 'will_paginate-foundation', '~> 5.3.4'
 gem 'foundation-rails'
 gem 'sass-rails', '~> 4.0.3'
