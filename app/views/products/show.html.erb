@@ -29,12 +29,8 @@
         <% end %> 
       </p>
       <p><a href="#" data-reveal-id="myModal">Expand Image</a></p>
-      <p><%= link_to 'Add to Cart', "#", :class => 'button small' %></p>
+      <p><%= button_to 'Add to Cart', line_items_path(product_id: @product), :class => 'button small' %></p>
     </div>
   </div>
 
 <%= link_to 'Back', products_path %>
-
-
-
-
