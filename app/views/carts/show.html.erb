@@ -1,12 +1,28 @@
 <% if notice %>
-  <p id="notice"><%= notice %></p> 
+  <div data-alert class="alert-box info radius">
+    <%= notice %>
+  <a href="#" class="close">&times;</a>
+</div>
 <% end %>
 
-<h2>Your cart</h2> 
-<ul>
-  <% @cart.line_items.each do |item| %> 
-    <li><%= item.quantity %> &times; <%= item.product.name %></li>
-  <% end %> 
-</ul>
+<br />
+<h2>Your Cart</h2>
+<table>
+  <% @cart.line_items.each do |item| %>
+    <tr>
+      <td><%= item.quantity %>&times;</td>
+      <td><%= item.product.name %></td>
+      <td class="item_price"><%= number_to_currency(item.total_price) %></td>
+    </tr>
+  <% end %>
 
+  <tr class="total_line">
+    <td colspan="2"><stromg>Total</stromg></td>
+    <td class="total_cell"><%= number_to_currency(@cart.total_price) %></td>
+  </tr>
+</table>
+
+<%= button_to "Checkout", new_order_path, method: :get, :class => 'right button round tiny' %>
+<%= button_to 'Empty cart', @cart, method: :delete, data: { confirm: 'Are you sure?' }, 
+    :class => 'button round tiny' %>
 <%= link_to 'Back', products_path %>
