@@ -1,29 +1,65 @@
 <% if notice %>
   <div data-alert class="alert-box info radius">
     <%= notice %>
-  <a href="#" class="close">&times;</a>
+  <a href="#" class="close">  &times;</a>
 </div>
 <% end %>
 
-<p>
-  <strong>Name:</strong>
-  <%= @order.name %>
-</p>
+<br	/>
+<h2>Order Details</h2>
+<table>
+  <tr>
+  	<th>Quantity</th>
+    <th>Name</th>
+    <th>Price</th>
+  </tr>
 
-<p>
-  <strong>Address:</strong>
-  <%= @order.address %>
-</p>
+	<%= render @order.line_items %>
 
-<p>
-  <strong>Email:</strong>
-  <%= @order.email %>
-</p>
+	<tr>
+	  <td colspan="2"></td>
+	  <td class="right">
+	    <strong>Subtotal </strong>
+	    <%= number_to_currency(@order.total_price) %>
+	  </td>
+	</tr>
+	<tr>
+	  <td colspan="2"></td>
+		<td class="right">
+		  <strong>HST </strong>
+		  <%= number_to_currency(@order.calculate_tax) %>
+		</td>
+	</tr>
+	<tr>
+	  <td colspan="2"></td>
+		<td class="right">
+		  <strong>Total </strong>
+		  <%= number_to_currency(@order.calculate_total) %>
+		</td>
+	</tr>
+</table>
 
-<p>
-  <strong>Pay type:</strong>
-  <%= @order.pay_type %>
-</p>
+<h3>Shipping Instructions</h3>
+
+<table>
+	<tr>
+	  <td>Ordered by</td>
+	  <td colspan="2"><%= @order.name %></td>
+	</tr>
+	<tr>
+		<td>Email address</td>
+		<td colspan="2"><%= @order.email %></td>
+	</tr>
+	<tr>
+		<td>Shipping address</td>
+		<td colspan="2"><%= @order.address %></td>
+	</tr>
+	<tr>
+		<td>Payment type</td>
+		<td colspan="2"><%= @order.pay_type %></td>
+	</tr>
+
+</table>
 
 <%= link_to 'Edit', edit_order_path(@order) %> |
 <%= link_to 'Back', orders_path %>

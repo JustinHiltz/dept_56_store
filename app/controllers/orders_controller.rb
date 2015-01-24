@@ -12,12 +12,13 @@ class OrdersController < ApplicationController
   # GET /orders/1
   # GET /orders/1.json
   def show
+    @line_items = LineItem.find_by(@order.id)
   end
 
   # GET /orders/new
   def new
     if @cart.line_items.empty?
-      redirect_to store_url, notice: "Your cart is empty"
+      redirect_to root_url, notice: "Your cart is empty"
       return
     end
 
