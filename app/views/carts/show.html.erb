@@ -10,7 +10,7 @@
 <table>
   <% @cart.line_items.each do |item| %>
     <tr>
-      <td><%= item.quantity %>  &times;</td>
+      <td><%= number_field_tag 'quantity', item.quantity, min: 0, max: 99 %></td>
       <td><%= item.product.name %></td>
       <td class="item_price"><%= number_to_currency(item.total_price) %></td>
     </tr>
@@ -23,6 +23,7 @@
 </table>
 
 <%= button_to "Checkout", new_order_path, method: :get, :class => 'right button round tiny' %>
-<%= button_to 'Empty cart', @cart, method: :delete, data: { confirm: 'Are you sure?' }, 
+<%= button_to 'Empty cart', @cart, method: :delete, :class => :destroy, data: { confirm: 'Are you sure?' }, 
     :class => 'button round tiny' %>
+<%= button_to "delete", @cart, :method => :delete, :class => :destroy, data: { confirm: 'Are you sure?' } %>
 <%= link_to 'Back', products_path %>

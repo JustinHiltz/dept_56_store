@@ -10,13 +10,11 @@
       <p>
         <%= image_tag @product.item_number.to_s + ".jpg", width: 500 %>
       </p>
-      
-      
     </div>
     <div class="large-5 pull-2 columns">
     <br />
     <p><%= button_to 'Buy', line_items_path(product_id: p), :class => 'button round tiny right' %></p>
-      <h3><%= @product.name %></h3>
+      <h4><%= @product.name %></h4>
       <p> 
         Item ID: <%= @product.item_number %> | <%= number_to_currency @product.price %>
       </p> 
