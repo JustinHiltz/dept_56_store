@@ -1,12 +1,12 @@
 Rails.application.routes.draw do
+
+  resources :store
   resources :orders
-
   resources :line_items
-
   resources :carts
-
   resources :products
-  root 'products#index'
+
+  root 'store#index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

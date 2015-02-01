@@ -1,0 +1,10 @@
+<div class="large-3 pull-9 columns">
+  <ul class="side-nav">
+    <li><h2>Collections</h2></li>
+    <li><%= link_to 'All Products', products_path %></li>
+    <li><%= link_to 'Dickens\' Village', products_path(:collection => 1) %></li>
+    <li><%= link_to 'Downton Abbey',     products_path(:collection => 2) %></li>
+    <li><%= link_to 'Harley-Davidson',   products_path(:collection => 3) %></li>
+    <li><a href="#">Snow Village</a></li>
+  </ul>
+</div>

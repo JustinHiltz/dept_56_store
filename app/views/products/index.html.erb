@@ -4,35 +4,37 @@
   <a href="#" class="close">&times;</a>
 </div>
 <% end %>
+<div class="large-9 push-3 columns">
+  <%= @products.each_slice(3) do |product_row| %>
+    <% product_row.each do |p| %> 
+      <div class="large-4 columns">
+        <p><%= link_to (image_tag p.item_number.to_s + ".jpg", width: 200), p %></p>
+        <p>
+          <h6><%= link_to p.name, p %></h6>
+          <a href="#" data-reveal-id="myModal">Quick peak <i class="fi-eye"></i></a>
+        </p>
+        <p>
+          <%= button_to 'Buy', line_items_path(product_id: p), :class => 'button round tiny right' %>
+        </p>
+        <p> 
+          Item ID: <%= p.item_number %>
+          <br />
+          <%= number_to_currency p.price %>
+        </p>
+      </div>
+      <div id="myModal" class="reveal-modal" data-reveal>
+        <%= image_tag p.item_number.to_s + ".jpg" %>
+        <a class="close-reveal-modal">&#215;</a>
+      </div>
+    <% end %>
+    <hr />
 
-<%= @products.each_slice(3) do |product_row| %>
-  <% product_row.each do |p| %> 
-    <div class="large-4 columns">
-      <p><%= link_to (image_tag p.item_number.to_s + ".jpg", width: 200), p %></p>
-      <p>
-        <h6><%= link_to p.name, p %></h6>
-        <a href="#" data-reveal-id="myModal">Quick peak <i class="fi-eye"></i></a>
-      </p>
-      <p>
-        <%= button_to 'Buy', line_items_path(product_id: p), :class => 'button round tiny right' %>
-      </p>
-      <p> 
-        Item ID: <%= p.item_number %>
-        <br />
-        <%= number_to_currency p.price %>
-      </p>
-    </div>
-    <div id="myModal" class="reveal-modal" data-reveal>
-      <%= image_tag p.item_number.to_s + ".jpg" %>
-      <a class="close-reveal-modal">&#215;</a>
-    </div>
   <% end %>
-  <hr />
-
-<% end %>
-<br />
-<div class="row">
-  <div class="large-9 large-offset-3 columns">
-    <%= will_paginate @products, renderer: FoundationPagination::Rails %>
+  <br />
+  <div class="row">
+    <div class="large-9 large-offset-3 columns">
+      <%= will_paginate @products, renderer: FoundationPagination::Rails %>
+    </div>
   </div>
 </div>
+<%= render 'layouts/sidebar' %>
